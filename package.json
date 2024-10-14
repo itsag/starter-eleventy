@@ -1,0 +1,12 @@
+{
+  "name": "app",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "build": "node_modules/.bin/eleventy",
+    "serve": "node_modules/.bin/eleventy --serve"
+  },
+  "dependencies": {
+    "@11ty/eleventy": "^2.0.1"
+  }
+}

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>{{ title }}</title>
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="/assets/css/site.styles.css" />
+
+  <!-- Scripts -->
+  <script src="/assets/scripts/tailwind.script.js"></script>
+  <script src="/assets/scripts/site.script.js"></script>
+
+  <!-- Headers -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <meta theme-color="#171717" />
+
+  <!-- SEO -->
+  {% if keywords != null %}
+    <meta name="keywords" content="{{ keywords }}" />
+  {% endif %}
+
+  {% if description != null %}
+    <meta name="description" content="{{ description }}" />
+  {% endif %}
+
+</head>
+<body>
+
+  {{ content }}
+
+</body>
+</html>

@@ -1,0 +1,57 @@
+name: Publish Website
+
+on:
+  workflow_dispatch:
+  release:
+    types:
+      - published
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    name: Publish
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      # Checkout
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Setup Bun
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+
+      # Setup Pages
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      # Install Packages
+      - name: Install Packages
+        run: bun install
+
+      # Build Website
+      - name: Build Website
+        run: bun run build
+
+      # Upload Artifact
+      - name: Upload Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+      # Deploy to Pages
+      - name: Deploy to Pages
+        uses: actions/deploy-pages@v4
+        id: deployment
